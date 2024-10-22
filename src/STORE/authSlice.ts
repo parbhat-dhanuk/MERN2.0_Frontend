@@ -1,44 +1,10 @@
 import {createSlice,PayloadAction} from "@reduxjs/toolkit"
 import API from "../http"
+import { AuthState, initialState, LoginData, RegisterData, Status, User } from "./@types/authType"
+import { AppDispatch } from "./store"
 
 
-interface RegisterData{
-    username:string,
-    email:string,
-    password:string
-}
 
-interface LoginData{
-    email:string,
-    password:string
-}
-
-interface User{
-    username:string,
-    email:string,
-    password:string,
-    token:string | null
-}
-
-interface AuthState{
-    user : User,
-    status: string,
-    
-}
-
-export enum Status{
-    loading="loading",
-    success="success",
-    error="error"
-}
-
-const initialState:AuthState={
-    user : {} as User,
-    status:Status.loading,
-   
-    
-    
-}
 
 const authSlice = createSlice({
     name : "auth",
@@ -71,7 +37,7 @@ const authSlice = createSlice({
  //REGISTER
 
  export function register(data:RegisterData){
-  return async function registerThunk(dispatch:any){
+  return async function registerThunk(dispatch:AppDispatch){
     dispatch(setStatus(Status.loading))
 
     try {
@@ -91,7 +57,7 @@ const authSlice = createSlice({
  //LOGIN
 
  export function login(data:LoginData){
-    return async function loginThunk(dispatch:any){
+    return async function loginThunk(dispatch:AppDispatch){
         dispatch(setStatus(Status.loading))
         
         try {

@@ -5,6 +5,7 @@ import store from './STORE/store'
 import Home from './pages/HOME/Home'
 import Register from './pages/AUTH/REGISTER/Register'
 import Login from './pages/AUTH/LOGIN/Login'
+import SingleCard from './globals/COMPONENTS/CARD/SingleCard'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   <Route path='/' element={<Home/>} />
   <Route path='/register' element={<Register/>} />
   <Route path='/login' element={<Login/>} />
+  <Route path='/:id' element={<SingleCard/>} />
  </Routes>
  </BrowserRouter>
 
