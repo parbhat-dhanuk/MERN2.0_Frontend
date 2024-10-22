@@ -73,12 +73,14 @@ const Home = () => {
       {/* END Hero Content */}
     </div>
     {/* END Hero Section: Image Side with Simple Header */}
-    <div className="flex">
-    <h1>Top Products</h1>
-    <Card />
-    <Card />
-    <Card />
-    </div>
+    <h2 className="text-3xl font-bold text-gray-800 mb-8 mt-1">Featured products</h2>
+<div className="flex flex-wrap gap-10">
+<Card/>
+<Card/>
+<Card/>
+<Card/>
+
+</div>
   </>
   )
 }
