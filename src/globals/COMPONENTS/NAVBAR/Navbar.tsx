@@ -1,7 +1,30 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "../../../STORE/hooks"
+import { useEffect, useState } from "react"
+import { resetToken } from "../../../STORE/authSlice"
 
 
 const Navbar = () => {
+
+   const navigate = useNavigate()
+   const dispatch = useAppDispatch()
+  const {user}=useAppSelector((state)=>state.auth)
+  const [isLoggedIn,setIsLoggedIn]=useState<boolean>(false)
+ 
+console.log(user.token)
+ useEffect(()=>{
+  const token=localStorage.getItem("token")
+  setIsLoggedIn(!!token || !!user.token )
+ },[user.token])
+
+
+ const handleLogout=()=>{
+  localStorage.removeItem("token")
+  setIsLoggedIn(false)
+  dispatch(resetToken())
+  navigate("/login")
+ }
+
   return (
 <header
     id="page-header"
@@ -38,18 +61,11 @@ const Navbar = () => {
        
       <div className="w-full max-w-sm min-w-[200px]">
   <div className="relative flex items-center">
-    <div className="absolute flex items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 top-2.5 ml-3 text-slate-600">
-        <path d="M8.25 4.5a3.75 3.75 0 1 1 7.5 0v8.25a3.75 3.75 0 1 1-7.5 0V4.5Z" />
-        <path d="M6 10.5a.75.75 0 0 1 .75.75v1.5a5.25 5.25 0 1 0 10.5 0v-1.5a.75.75 0 0 1 1.5 0v1.5a6.751 6.751 0 0 1-6 6.709v2.291h3a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1 0-1.5h3v-2.291a6.751 6.751 0 0 1-6-6.709v-1.5A.75.75 0 0 1 6 10.5Z" />
-      </svg>
- 
-      <div className="h-6 border-l border-slate-200 ml-2.5"></div>
-    </div>
+    
  
     <input
-      className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pr-3 pl-14 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-      placeholder="UI Kits, Dashboards..." 
+      className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-gray-700 rounded-md pr-3 pl-14 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+      placeholder="search..." 
     />
     
     <button
@@ -70,24 +86,36 @@ const Navbar = () => {
         {/* search buttton */}
         
 
-        <Link
+        {
+          !isLoggedIn?(
+            <>
+            <Link
           to="/login"
-          className="text-sm font-semibold text-gray-900 hover:text-blue-600 dark:text-gray-100 dark:hover:text-blue-400"
+          className="text-sm font-semibold underline text-gray-900 hover:text-blue-600 dark:text-gray-100 dark:hover:text-blue-400"
         >
           <span>Login</span>
         </Link>
         <Link
           to="/register"
-          className="text-sm font-semibold text-gray-900 hover:text-blue-600 dark:text-gray-100 dark:hover:text-blue-400"
+          className="text-sm font-semibold underline text-gray-900 hover:text-blue-600 dark:text-gray-100 dark:hover:text-blue-400"
         >
           <span>Register</span>
         </Link>
-        <Link
-          to="#"
+            </>
+          ): (<>
+            
+            <button
+         
+          onClick={handleLogout}
           className="text-sm font-semibold text-gray-900 hover:text-blue-600 dark:text-gray-100 dark:hover:text-blue-400"
         >
           <span>Logout</span>
-        </Link>
+        </button>
+          </>)
+        }
+
+        
+       
       </nav>
     </div>
     {/* END Main Header Content */}

@@ -86,14 +86,18 @@ const Form:React.FC<Props>= ({type,onSubmit}) => {
 
                     {/* authentication with google */}
                     
-                    <div className="flex flex-col gap-2 max-h-screen bg-gray-100 ">
+                    
 
                         
-                        {/* google */}
+                        {/* google and facebook authentication */}
 
+                      
+                      
+                      <div className="flex flex-col items-center justify-center " >
+                      
                       <button
-    className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md  px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-    <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
+       className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md  px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+      <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
         viewBox="-0.5 0 48 48" version="1.1">
 
         <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -116,13 +120,15 @@ const Form:React.FC<Props>= ({type,onSubmit}) => {
         </g>
     </svg>
     <span>Continue with Google</span>
-                      </button>
+
+ </button>
 
 
                  {/* facebook */}
 
+
                      <button
-    className="flex items-center bg-white border border-gray-300 mt-2 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+    className="flex items-center bg-white border border-gray-300 mt-2 rounded-lg shadow-md px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
     <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
         viewBox="0 0 48 48" version="1.1">
         <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -139,14 +145,16 @@ const Form:React.FC<Props>= ({type,onSubmit}) => {
     <span>Continue with Facebook</span>
                     </button>
 
-                    <div className="my-1 border-b text-center">
+                      </div>
+
+                    <div className="border-b text-center">
                         <div
                             className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
                             Or sign In with E-mail
                         </div>
                     </div>
         
-        </div>
+    
 
                   <form  onSubmit={handleSubmit} className="space-y-6" >
                     <div className="space-y-1">

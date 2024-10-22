@@ -17,12 +17,13 @@ interface User{
     username:string,
     email:string,
     password:string,
-    token:string
+    token:string | null
 }
 
 interface AuthState{
     user : User,
-    status: string
+    status: string,
+    
 }
 
 export enum Status{
@@ -33,7 +34,10 @@ export enum Status{
 
 const initialState:AuthState={
     user : {} as User,
-    status:Status.loading
+    status:Status.loading,
+   
+    
+    
 }
 
 const authSlice = createSlice({
@@ -51,12 +55,17 @@ const authSlice = createSlice({
         },
         setToken(state:AuthState,action:PayloadAction<string>){
             state.user.token=action.payload
+        },
+        resetToken(state:AuthState){
+         state.user.token=null
         }
+       
+       
     }
 
 })
 
- export const  {setUser,setStatus,resetStatus,setToken} = authSlice.actions
+ export const  {setUser,setStatus,resetStatus,setToken,resetToken} = authSlice.actions
  export default authSlice.reducer
 
  //REGISTER
