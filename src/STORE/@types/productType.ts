@@ -27,10 +27,12 @@ interface User{
 
 export interface ProductState{
     product:Product[],
-    status:Status
+    status:Status,
+    singleProduct:Product|null
 }
 
 export const initialState:ProductState={
      product:[],
-     status:Status.loading
+     status:Status.loading,
+     singleProduct:null
 }
